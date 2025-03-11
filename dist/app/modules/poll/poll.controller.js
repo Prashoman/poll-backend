@@ -22,7 +22,7 @@ const createPoll = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, voi
     (0, sendResponse_1.default)(res, {
         statusCode: 201,
         success: true,
-        message: "Like created successfully",
+        message: "Poll created successfully",
         data: poll,
     });
 }));
