@@ -26,6 +26,9 @@ const pollSchema = new Schema<TPoll>(
     ],
     totalVotes: { type: Number, default: 0 },
     totalLikes: { type: Number, default: 0 },
+    expired: { type: Boolean, default: false },
+    userId: { type: String , default: ""},
+    pollType: { type: String, default: "public" },
   },
   {
     timestamps: true,

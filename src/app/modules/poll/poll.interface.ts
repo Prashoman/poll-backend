@@ -18,5 +18,8 @@ export type TPoll ={
         createdAt: Date
     }>
     totalVotes: number,
-    totalLikes: number
+    totalLikes: number,
+    expired: boolean,
+    userId?:string,
+    pollType?:string
 }

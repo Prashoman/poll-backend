@@ -66,11 +66,26 @@ const updatePollComment = catchAsync(async (req: Request, res: Response) => {
   });
 })
 
+const getPollByUserId = catchAsync(async (req: Request, res: Response) => {
+  const { userId } = req.params;
+  // console.log("CuserId", userId);
+  
+  const polls = await PollService.getPollsByUserId(userId);
+
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: "Polls fetched successfully",
+    data: polls,
+  });
+})
+
 
 export const PollController={
     createPoll,
     getPolls,
     updatePoll,
     updatePollReactions,
-    updatePollComment
+    updatePollComment,
+    getPollByUserId
 }

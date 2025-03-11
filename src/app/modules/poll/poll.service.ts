@@ -81,10 +81,19 @@ const updatePollCommentInDB = async (slug: string, payload: string) => {
   return result;
 };
 
+
+const getPollsByUserId = async (userId: string) => {
+  // console.log("userId", userId);
+  
+  const polls = await Poll.find({ userId });
+  return polls;
+}
+
 export const PollService = {
   createPollIntoDB,
   getPollsFromDB,
   updatePollInDB,
   updatePollReactionsInDB,
   updatePollCommentInDB,
+  getPollsByUserId
 };

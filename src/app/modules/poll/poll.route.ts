@@ -11,5 +11,7 @@ route.patch("/polls/:slug", PollController.updatePoll);
 route.patch("/polls-reactions/:slug", PollController.updatePollReactions);
 route.patch("/polls-comment/:slug", PollController.updatePollComment);
 
+route.get("/pollsByUser/:userId",PollController.getPollByUserId);
+
 
 export const PollRoutes = route;
