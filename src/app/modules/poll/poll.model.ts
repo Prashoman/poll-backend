@@ -1,6 +1,6 @@
 import { model, Schema } from "mongoose";
 import { TPoll } from "./poll.interface";
-import slugify from "slugify";
+
 
 const pollSchema = new Schema<TPoll>(
   {
@@ -24,18 +24,14 @@ const pollSchema = new Schema<TPoll>(
         createdAt: { type: Date, default: Date.now },
       },
     ],
+    totalVotes: { type: Number, default: 0 },
+    totalLikes: { type: Number, default: 0 },
   },
   {
     timestamps: true,
   }
 );
 
-pollSchema.pre("save", function (next) {
-    const poll = this;
-  if(poll.question){
-    poll.slug = slugify(poll.question, { lower: true });
-  }
-  next();
-});
+
 
 export const Poll = model<TPoll>("Poll", pollSchema);

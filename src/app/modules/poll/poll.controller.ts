@@ -17,7 +17,60 @@ const createPoll = catchAsync(async (req: Request, res: Response) => {
 });
 
 
+const getPolls = catchAsync(async (req: Request, res: Response) => {
+  const { slug } = req.params;
+  const polls = await PollService.getPollsFromDB(slug);
+
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: "Polls fetched successfully",
+    data: polls,
+  });
+})
+
+const updatePoll = catchAsync(async (req: Request, res: Response) => {
+  const { slug } = req.params;
+  const poll = await PollService.updatePollInDB(slug, req.body.optionText);
+
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: "Poll updated successfully",
+    data: poll,
+  });
+})
+
+const updatePollReactions = catchAsync(async (req: Request, res: Response) => {
+  const { slug } = req.params;
+  const poll = await PollService.updatePollReactionsInDB(slug, req.body.reaction);
+
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: "Poll reactions updated successfully",
+    data: poll,
+  });
+}
+)
+
+const updatePollComment = catchAsync(async (req: Request, res: Response) => {
+  const { slug } = req.params;
+  const poll = await PollService.updatePollCommentInDB(slug, req.body.comment);
+
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: "Poll comment updated successfully",
+    data: poll,
+  });
+})
+
 
 export const PollController={
-    createPoll
+    createPoll,
+    getPolls,
+    updatePoll,
+    updatePollReactions,
+    updatePollComment
 }
